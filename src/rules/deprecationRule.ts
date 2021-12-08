@@ -54,7 +54,7 @@ export class Rule extends Lint.Rules.TypedRule {
     /* tslint:enable:object-literal-sort-keys */
 
     public static FAILURE_STRING(name: string, message: string) {
-        return `${name} is deprecated${message === "" ? "." : `: ${message.trim()}`}`;
+        return `${name} is deprecated${message === "" || !message.hasOwnProperty('trim') ? "." : `: ${message.trim()}`}`;
     }
 
     public applyWithProgram(sourceFile: ts.SourceFile, program: ts.Program): Lint.RuleFailure[] {
